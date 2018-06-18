@@ -1,0 +1,26 @@
+#https://gist.github.com/forceuser/74ecfd30a483f24f8eec5ea4621ad46e
+
+map $http_x_original_host $original_host {
+  default $http_x_original_host;
+  ''      $host;
+}
+
+map $http_x_forwarded_proto $proxy_x_forwarded_proto {
+  default $http_x_forwarded_proto;
+  ''      $scheme;
+}
+
+map $http_x_forwarded_port $proxy_x_forwarded_port {
+  default $http_x_forwarded_port;
+  ''      $server_port;
+}
+
+map $http_upgrade $proxy_connection {
+  default upgrade;
+  '' close;
+}
+
+map $scheme $proxy_x_forwarded_ssl {
+  default off;
+  https on;
+}
